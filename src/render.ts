@@ -249,7 +249,10 @@ function renderScreenshots(
     const wd = page.widths[String(w)];
     const item = el("div", "shot-item");
     const filename = wd?.nav_screenshot ?? null;
-    if (filename && screenshotBase) {
+    // screenshotBase === "" happens for backend-analyzed reports, whose
+    // nav_screenshot values are already absolute /api/screenshots/... URLs —
+    // that's a valid (falsy-string) base, distinct from null ("no base at all").
+    if (filename && screenshotBase !== null) {
       const img = el("img", "shot-thumb");
       img.src = `${screenshotBase}${filename}`;
       img.alt = `${page.label} @ ${w}px nav screenshot`;

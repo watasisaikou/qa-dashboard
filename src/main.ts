@@ -35,6 +35,16 @@ header.appendChild(dropHint);
 
 app.appendChild(header);
 
+// ---------- analyze form / static-mode note root ----------
+//
+// Populated once the /api/health probe (below) resolves: a working form in
+// backend mode, a short note in static mode. Sits above the report so a
+// fresh analysis result replaces whatever report is currently shown.
+
+const formRoot = document.createElement("div");
+formRoot.id = "form-root";
+app.appendChild(formRoot);
+
 // ---------- report root ----------
 
 const reportRoot = document.createElement("div");
@@ -68,6 +78,147 @@ function loadReport(data: unknown, screenshotBase: string | null): void {
   }
   renderReport(reportRoot, data, screenshotBase);
 }
+
+// ---------- backend-mode analyze form ----------
+
+async function runAnalyze(
+  url: string,
+  widths: string,
+  vlm: boolean,
+  statusEl: HTMLElement,
+  formEls: (HTMLInputElement | HTMLButtonElement)[],
+): Promise<void> {
+  formEls.forEach((el) => (el.disabled = true));
+  statusEl.textContent = "解析中… headless Chrome で描画・計測しています";
+  statusEl.className = "analyze-status analyze-status-loading";
+
+  try {
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url, widths, vlm }),
+    });
+    const data: unknown = await res.json().catch(() => null);
+
+    if (!res.ok) {
+      const msg =
+        data && typeof data === "object" && "error" in data
+          ? String((data as { error: unknown }).error)
+          : `解析に失敗しました (HTTP ${res.status})`;
+      statusEl.textContent = msg;
+      statusEl.className = "analyze-status analyze-status-error";
+      return;
+    }
+
+    if (!isReport(data)) {
+      statusEl.textContent = "解析結果の形式が qa-report.json と一致しません。";
+      statusEl.className = "analyze-status analyze-status-error";
+      return;
+    }
+
+    statusEl.textContent = "";
+    statusEl.className = "analyze-status";
+    // Backend already rewrote nav_screenshot to absolute /api/screenshots/...
+    // URLs, so the base is the empty string (a valid prefix), not null.
+    renderReport(reportRoot, data, "");
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent =
+      "解析リクエストに失敗しました。バックエンド（server/app.py）が起動しているか確認してください。";
+    statusEl.className = "analyze-status analyze-status-error";
+  } finally {
+    formEls.forEach((el) => (el.disabled = false));
+  }
+}
+
+function buildAnalyzeForm(): HTMLElement {
+  const panel = document.createElement("section");
+  panel.className = "analyze-panel";
+
+  const form = document.createElement("form");
+  form.className = "analyze-form";
+
+  const urlLabel = document.createElement("label");
+  urlLabel.className = "analyze-field";
+  urlLabel.appendChild(document.createTextNode("URL"));
+  const urlInput = document.createElement("input");
+  urlInput.type = "text";
+  urlInput.name = "url";
+  urlInput.className = "analyze-input analyze-input-url";
+  urlInput.placeholder = "https://example.com";
+  urlInput.required = true;
+  urlLabel.appendChild(urlInput);
+
+  const widthsLabel = document.createElement("label");
+  widthsLabel.className = "analyze-field";
+  widthsLabel.appendChild(document.createTextNode("検査幅"));
+  const widthsInput = document.createElement("input");
+  widthsInput.type = "text";
+  widthsInput.name = "widths";
+  widthsInput.className = "analyze-input analyze-input-widths";
+  widthsInput.value = "360,390,768,1280";
+  widthsLabel.appendChild(widthsInput);
+
+  const vlmLabel = document.createElement("label");
+  vlmLabel.className = "analyze-checkbox-field";
+  const vlmInput = document.createElement("input");
+  vlmInput.type = "checkbox";
+  vlmInput.name = "vlm";
+  vlmLabel.appendChild(vlmInput);
+  vlmLabel.appendChild(document.createTextNode("VLM も使う（遅い）"));
+
+  const submitBtn = document.createElement("button");
+  submitBtn.type = "submit";
+  submitBtn.className = "analyze-submit";
+  submitBtn.textContent = "解析";
+
+  form.appendChild(urlLabel);
+  form.appendChild(widthsLabel);
+  form.appendChild(vlmLabel);
+  form.appendChild(submitBtn);
+
+  const statusEl = document.createElement("p");
+  statusEl.className = "analyze-status";
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const url = urlInput.value.trim();
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      statusEl.textContent = "URL は http:// または https:// から始めてください。";
+      statusEl.className = "analyze-status analyze-status-error";
+      return;
+    }
+    const widths = widthsInput.value.trim() || "360,390,768,1280";
+    const vlm = vlmInput.checked;
+    void runAnalyze(url, widths, vlm, statusEl, [urlInput, widthsInput, vlmInput, submitBtn]);
+  });
+
+  panel.appendChild(form);
+  panel.appendChild(statusEl);
+  return panel;
+}
+
+function buildStaticModeNote(): HTMLElement {
+  const note = document.createElement("p");
+  note.className = "analyze-static-note";
+  note.textContent =
+    "任意 URL の解析はローカルで動きます（server/app.py を起動）。このホスト版は静的デモです。";
+  return note;
+}
+
+fetch("/api/health")
+  .then((res) => {
+    if (!res.ok) throw new Error(`health check failed: ${res.status}`);
+    return res.json();
+  })
+  .then((data: unknown) => {
+    const ok =
+      typeof data === "object" && data !== null && (data as Record<string, unknown>)["ok"] === true;
+    formRoot.appendChild(ok ? buildAnalyzeForm() : buildStaticModeNote());
+  })
+  .catch(() => {
+    formRoot.appendChild(buildStaticModeNote());
+  });
 
 // ---------- default: fetch bundled sample ----------
 

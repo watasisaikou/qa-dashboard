@@ -72,3 +72,46 @@ See `src/types.ts` for the full TypeScript interfaces, and
 
 `vite.config.ts` sets `base: '/qa-dashboard/'` for GitHub Pages project-page
 hosting.
+
+## ローカルで任意 URL を解析する
+
+`server/app.py` は stdlib のみの小さなバックエンドで、フォームに入力した URL に
+対して `qa.py` を実行し、結果をそのままダッシュボードに表示します（ライブ配信は
+無し — 1 回のリクエストで完走を待って結果を返すだけ）。
+
+**前提:**
+
+- Python 3
+- Chrome（または Edge）— `qa.py` が headless で使う
+- `--vlm` を使う場合のみ: [ollama](https://ollama.com/) をローカルで起動し、
+  `gemma4:e4b-it-qat` モデルを pull 済みであること
+
+**(a) 本番相当（ビルド済みを配信）:**
+
+```bash
+npm run build
+python server/app.py
+# -> http://localhost:8000/qa-dashboard/ を開く
+```
+
+**(b) 開発時（Vite dev server + バックエンド）:**
+
+```bash
+python server/app.py       # ターミナル1
+npm run dev                 # ターミナル2 -> http://localhost:5173/
+```
+
+`vite.config.ts` の `server.proxy` が `/api/*` を `http://localhost:8000` に
+転送するので、`npm run dev` からもバックエンドの解析 API を呼べます。
+
+`/api/health` が応答すればフォームが表示され（backend mode）、応答しなければ
+サンプルレポートのみを表示する静的モードにフォールバックします（GitHub Pages
+などバックエンドの無いホスティング向け）。
+
+**注意:**
+
+- バックエンドは `127.0.0.1` にのみバインドします（外部公開されません）。
+- 解析は同時に 1 本まで（2 本目のリクエストは `409` を返します）。
+- `--port` または環境変数 `QA_PORT` でポートを変更できます。
+- headless Chrome をブロックするサイトや、読み込みが遅いサイトはタイムアウト
+  （180 秒）になることがあります。

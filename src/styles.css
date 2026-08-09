@@ -119,6 +119,142 @@ body.drag-active::after {
   pointer-events: none;
 }
 
+/* ---------- Analyze form (backend mode) / static-mode note ---------- */
+
+#form-root {
+  margin-bottom: 28px;
+}
+
+.analyze-panel {
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.analyze-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 14px;
+}
+
+.analyze-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.analyze-input {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: var(--fg);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-width: 0;
+}
+
+.analyze-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.analyze-input-url {
+  width: 340px;
+  max-width: 100%;
+}
+
+.analyze-input-widths {
+  width: 180px;
+  max-width: 100%;
+}
+
+.analyze-checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--fg-2);
+  padding-bottom: 9px;
+}
+
+.analyze-checkbox-field input {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+}
+
+.analyze-submit {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.analyze-submit:hover {
+  background: var(--accent-hover);
+}
+
+.analyze-submit:disabled,
+.analyze-input:disabled,
+.analyze-checkbox-field input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.analyze-status {
+  margin: 12px 0 0;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.analyze-status-loading {
+  color: var(--accent-hover);
+}
+
+.analyze-status-error {
+  color: var(--high);
+}
+
+.analyze-static-note {
+  margin: 0;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .analyze-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .analyze-input-url,
+  .analyze-input-widths {
+    width: 100%;
+  }
+}
+
 /* ---------- Summary bar ---------- */
 
 .summary-bar {
