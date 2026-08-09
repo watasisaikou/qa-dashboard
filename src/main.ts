@@ -33,7 +33,39 @@ dropHint.innerHTML =
   '<strong>qa-report.json</strong> をこのページのどこかにドラッグ&ドロップすると読み込めます。';
 header.appendChild(dropHint);
 
+// 現在表示中のレポート（sample / 解析結果 / D&D いずれも）を JSON で保存する。
+// 保存したファイルはこのページに D&D すればそのまま読み戻せる。
+let currentReport: Report | null = null;
+const exportBtn = document.createElement("button");
+exportBtn.type = "button";
+exportBtn.className = "export-btn";
+exportBtn.textContent = "レポートを JSON で保存";
+exportBtn.disabled = true;
+exportBtn.addEventListener("click", exportReport);
+header.appendChild(exportBtn);
+
 app.appendChild(header);
+
+function exportReport(): void {
+  if (!currentReport) return;
+  const json = JSON.stringify(currentReport, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const objectUrl = URL.createObjectURL(blob);
+  const label = currentReport.pages[0]?.label ?? "report";
+  const safe = label.replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 40) || "report";
+  const a = document.createElement("a");
+  a.href = objectUrl;
+  a.download = `qa-report-${safe}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(objectUrl);
+}
+
+function setCurrentReport(report: Report): void {
+  currentReport = report;
+  exportBtn.disabled = false;
+}
 
 // ---------- analyze form / static-mode note root ----------
 //
@@ -76,6 +108,7 @@ function loadReport(data: unknown, screenshotBase: string | null): void {
     showError("読み込んだファイルは qa-report.json の形式と一致しません。");
     return;
   }
+  setCurrentReport(data);
   renderReport(reportRoot, data, screenshotBase);
 }
 
@@ -120,6 +153,7 @@ async function runAnalyze(
     statusEl.className = "analyze-status";
     // Backend already rewrote nav_screenshot to absolute /api/screenshots/...
     // URLs, so the base is the empty string (a valid prefix), not null.
+    setCurrentReport(data);
     renderReport(reportRoot, data, "");
   } catch (err) {
     console.error(err);
