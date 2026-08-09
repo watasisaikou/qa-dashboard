@@ -19,6 +19,24 @@ function badgeClass(sev: Severity): string {
   return "badge badge-low";
 }
 
+// ---------- severity filter state ----------
+//
+// The three summary badges double as toggle buttons: clicking one shows or
+// hides every finding of that severity, across every page's 指摘事項 list.
+// State lives here (not per-render) so it survives report reloads.
+
+const ALL_SEVERITIES: Severity[] = ["HIGH", "REVIEW", "LOW"];
+const activeSeverities = new Set<Severity>(ALL_SEVERITIES);
+
+function applyFindingsFilter(): void {
+  const rows = document.querySelectorAll<HTMLElement>(".finding-row[data-severity]");
+  rows.forEach((row) => {
+    const sev = row.dataset["severity"] as Severity | undefined;
+    const visible = sev === undefined || activeSeverities.has(sev);
+    row.style.display = visible ? "" : "none";
+  });
+}
+
 // ---------- lightbox ----------
 
 let lightboxEl: HTMLDivElement | null = null;
@@ -49,6 +67,33 @@ function openLightbox(src: string): void {
 
 // ---------- summary bar ----------
 
+function makeSeverityToggle(sev: Severity, count: number): HTMLButtonElement {
+  const btn = el("button", `${badgeClass(sev)} badge-toggle`);
+  btn.type = "button";
+  btn.textContent = `${sev} ${count}`;
+  btn.dataset["severity"] = sev;
+  btn.title = "クリックで表示/非表示を切り替え";
+
+  const syncState = (): void => {
+    const isActive = activeSeverities.has(sev);
+    btn.classList.toggle("badge-inactive", !isActive);
+    btn.setAttribute("aria-pressed", String(isActive));
+  };
+  syncState();
+
+  btn.addEventListener("click", () => {
+    if (activeSeverities.has(sev)) {
+      activeSeverities.delete(sev);
+    } else {
+      activeSeverities.add(sev);
+    }
+    syncState();
+    applyFindingsFilter();
+  });
+
+  return btn;
+}
+
 function renderSummary(report: Report): HTMLElement {
   const bar = el("section", "summary-bar");
 
@@ -65,12 +110,9 @@ function renderSummary(report: Report): HTMLElement {
   bar.appendChild(widthsStat);
 
   const badgeRow = el("div", "badge-row");
-  const high = el("span", "badge badge-high", `HIGH ${report.summary.HIGH}`);
-  const review = el("span", "badge badge-review", `REVIEW ${report.summary.REVIEW}`);
-  const low = el("span", "badge badge-low", `LOW ${report.summary.LOW}`);
-  badgeRow.appendChild(high);
-  badgeRow.appendChild(review);
-  badgeRow.appendChild(low);
+  badgeRow.appendChild(makeSeverityToggle("HIGH", report.summary.HIGH));
+  badgeRow.appendChild(makeSeverityToggle("REVIEW", report.summary.REVIEW));
+  badgeRow.appendChild(makeSeverityToggle("LOW", report.summary.LOW));
   bar.appendChild(badgeRow);
 
   return bar;
@@ -187,6 +229,7 @@ function renderFindings(findings: Finding[]): HTMLElement {
   }
   for (const f of findings) {
     const row = el("li", "finding-row");
+    row.dataset["severity"] = f.severity;
     row.appendChild(el("span", badgeClass(f.severity), f.severity));
     row.appendChild(el("span", "message", f.message));
     list.appendChild(row);
@@ -265,4 +308,8 @@ export function renderReport(
   for (const page of report.pages) {
     container.appendChild(renderPageCard(page, report.widths, screenshotBase));
   }
+
+  // Newly rendered finding rows start visible; sync them with whatever
+  // severity filter state is currently active (e.g. after a report reload).
+  applyFindingsFilter();
 }

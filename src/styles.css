@@ -1,37 +1,19 @@
 :root {
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --surface-warm: #f6f9fc;
-  --fg: #061b31;
-  --fg-2: #273951;
-  --muted: #64748d;
-  --border: #e5edf5;
-  --accent: #533afd;
-  --accent-hover: #4434d4;
-  --ok: #0e9f6e;
-  --high: #e02424;
-  --review: #c27803;
-  --low: #94a3b8;
-  --shadow: 0 1px 2px rgba(6, 27, 49, 0.04), 0 4px 12px rgba(6, 27, 49, 0.05);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b1420;
-    --surface: #101c2c;
-    --surface-warm: #14212f;
-    --fg: #eaf1f8;
-    --fg-2: #c7d3e0;
-    --muted: #8ea0b6;
-    --border: #22344a;
-    --accent: #8b7bff;
-    --accent-hover: #a596ff;
-    --ok: #34d399;
-    --high: #f87171;
-    --review: #fbbf24;
-    --low: #64748d;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.35);
-  }
+  --bg: #0b0f14;
+  --surface: #111722;
+  --surface-2: #0e141d;
+  --border: #1e2733;
+  --fg: #e6edf3;
+  --fg-2: #c9d1d9;
+  --muted: #7d8896;
+  --accent: #7c6cff;
+  --accent-hover: #9a8cff;
+  --ok: #3fb950;
+  --high: #f85149;
+  --review: #d29922;
+  --low: #6e7b8a;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -50,15 +32,15 @@ body {
   background-image:
     repeating-linear-gradient(
       0deg,
-      color-mix(in srgb, var(--fg) 5%, transparent) 0px,
-      color-mix(in srgb, var(--fg) 5%, transparent) 1px,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
       transparent 1px,
       transparent 44px
     ),
     repeating-linear-gradient(
       90deg,
-      color-mix(in srgb, var(--fg) 5%, transparent) 0px,
-      color-mix(in srgb, var(--fg) 5%, transparent) 1px,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
       transparent 1px,
       transparent 44px
     );
@@ -113,11 +95,12 @@ body {
   border-radius: 10px;
   color: var(--muted);
   font-size: 0.82rem;
-  background: var(--surface-warm);
+  background: var(--surface-2);
 }
 
 .drop-hint strong {
   color: var(--fg-2);
+  font-family: var(--mono);
 }
 
 body.drag-active::after {
@@ -131,7 +114,7 @@ body.drag-active::after {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, var(--bg) 90%);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg) 86%);
   border: 3px dashed var(--accent);
   pointer-events: none;
 }
@@ -168,6 +151,7 @@ body.drag-active::after {
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--fg);
+  font-family: var(--mono);
 }
 
 .badge-row {
@@ -185,25 +169,57 @@ body.drag-active::after {
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 600;
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
   border: 1px solid transparent;
 }
 
 .badge-high {
   color: var(--high);
-  background: color-mix(in srgb, var(--high) 12%, transparent);
-  border-color: color-mix(in srgb, var(--high) 30%, transparent);
+  background: color-mix(in srgb, var(--high) 14%, transparent);
+  border-color: color-mix(in srgb, var(--high) 35%, transparent);
 }
 
 .badge-review {
   color: var(--review);
-  background: color-mix(in srgb, var(--review) 14%, transparent);
-  border-color: color-mix(in srgb, var(--review) 30%, transparent);
+  background: color-mix(in srgb, var(--review) 16%, transparent);
+  border-color: color-mix(in srgb, var(--review) 35%, transparent);
 }
 
 .badge-low {
-  color: var(--muted);
-  background: color-mix(in srgb, var(--low) 16%, transparent);
-  border-color: color-mix(in srgb, var(--low) 30%, transparent);
+  color: var(--low);
+  background: color-mix(in srgb, var(--low) 18%, transparent);
+  border-color: color-mix(in srgb, var(--low) 35%, transparent);
+}
+
+/* Severity toggle buttons (summary bar badges double as filters) */
+
+.badge-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    transform 0.1s ease;
+}
+
+.badge-toggle:hover {
+  opacity: 0.85;
+}
+
+.badge-toggle:active {
+  transform: scale(0.97);
+}
+
+.badge-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.badge-toggle.badge-inactive {
+  opacity: 0.4;
+  text-decoration: line-through;
 }
 
 /* ---------- Page card ---------- */
@@ -228,6 +244,7 @@ body.drag-active::after {
   font-size: 0.82rem;
   color: var(--muted);
   word-break: break-all;
+  font-family: var(--mono);
 }
 
 .page-card h3 {
@@ -279,14 +296,16 @@ body.drag-active::after {
 }
 
 .matrix-table thead th {
-  background: var(--surface-warm);
+  background: var(--surface-2);
   color: var(--fg-2);
   font-weight: 700;
   font-size: 0.78rem;
+  font-family: var(--mono);
 }
 
 .matrix-table thead th:first-child {
-  background: var(--surface-warm);
+  background: var(--surface-2);
+  font-family: inherit;
 }
 
 .matrix-table tbody tr:last-child td {
@@ -300,20 +319,24 @@ body.drag-active::after {
 .cell-ok {
   color: var(--ok);
   font-weight: 600;
+  font-family: var(--mono);
 }
 
 .cell-bad {
   color: var(--high);
   font-weight: 600;
+  font-family: var(--mono);
 }
 
 .cell-visible {
   color: var(--ok);
   font-weight: 700;
+  font-family: var(--mono);
 }
 
 .cell-hidden {
   color: var(--low);
+  font-family: var(--mono);
 }
 
 .vlm-note {
@@ -343,7 +366,7 @@ body.drag-active::after {
   gap: 10px;
   padding: 8px 10px;
   border-radius: 6px;
-  background: var(--surface-warm);
+  background: var(--surface-2);
   font-size: 0.85rem;
 }
 
@@ -374,6 +397,7 @@ body.drag-active::after {
 .shot-item .shot-label {
   font-size: 0.75rem;
   color: var(--muted);
+  font-family: var(--mono);
 }
 
 .shot-thumb {
@@ -383,7 +407,7 @@ body.drag-active::after {
   object-position: left top;
   border-radius: 6px;
   border: 1px solid var(--border);
-  background: var(--surface-warm);
+  background: var(--surface-2);
   cursor: zoom-in;
   transition: border-color 0.15s ease;
 }
@@ -397,7 +421,7 @@ body.drag-active::after {
   height: 100px;
   border-radius: 6px;
   border: 1px dashed var(--border);
-  background: var(--surface-warm);
+  background: var(--surface-2);
   color: var(--muted);
   font-size: 0.72rem;
   display: flex;
@@ -413,7 +437,7 @@ body.drag-active::after {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(6, 27, 49, 0.78);
+  background: rgba(0, 0, 0, 0.82);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -425,7 +449,7 @@ body.drag-active::after {
   max-width: 100%;
   max-height: 100%;
   border-radius: 8px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
 }
 
 .lightbox.hidden {
