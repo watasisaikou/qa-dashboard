@@ -54,7 +54,9 @@ files alongside them, so thumbnails fall back to a placeholder box.
           "overflow": 0,
           "links": [{ "text": "About", "href": "about.html", "visible": true }],
           "vlm": { "items": ["..."], "issues": "none" },
-          "nav_screenshot": "index_html_360_nav.png"
+          "nav_screenshot": "index_html_360_nav.png",
+          "hamburger": true,        // menu toggle detected at this width
+          "hamburgerNamed": true    // toggle has an accessible name (a11y)
         }
         // ...390, 768, 1280
       },
@@ -81,7 +83,8 @@ hosting.
 
 **前提:**
 
-- Python 3
+- Python 3 と `websocket-client`（`pip install websocket-client` — `qa.py` の
+  CDP 制御に必須。無いとフォーム送信が 502 で失敗します）
 - Chrome（または Edge）— `qa.py` が headless で使う
 - `--vlm` を使う場合のみ: [ollama](https://ollama.com/) をローカルで起動し、
   `gemma4:e4b-it-qat` モデルを pull 済みであること

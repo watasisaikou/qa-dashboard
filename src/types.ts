@@ -25,6 +25,11 @@ export interface WidthData {
   links: NavLink[];
   vlm: VlmResult | null;
   nav_screenshot: string | null;
+  /** Menu toggle (named or visual) detected at this width. Absent in reports
+   *  from qa.py versions before hamburger detection was added. */
+  hamburger?: boolean;
+  /** Toggle carries an accessible name (aria-label etc.). */
+  hamburgerNamed?: boolean;
 }
 
 export interface PageReport {
