@@ -5,17 +5,17 @@
     768,
     1280
   ],
-  "vlm": true,
+  "vlm": false,
   "summary": {
     "pages": 2,
-    "HIGH": 3,
+    "HIGH": 0,
     "REVIEW": 0,
-    "LOW": 24
+    "LOW": 12
   },
   "pages": [
     {
-      "url": "http://127.0.0.1:8899/_demo_index.html",
-      "label": "_demo_index.html",
+      "url": "https://namakoo-dev.github.io/index.html",
+      "label": "index.html",
       "widths": {
         "360": {
           "vw": 360,
@@ -43,25 +43,30 @@
               "visible": false
             },
             {
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
+            },
+            {
               "text": "開発者",
               "href": "about.html",
-              "visible": false
+              "visible": true
             },
             {
               "text": "使い方",
               "href": "#use",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "index.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "使い方"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "_demo_index_html_360_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         },
         "390": {
           "vw": 390,
@@ -89,25 +94,30 @@
               "visible": false
             },
             {
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
+            },
+            {
               "text": "開発者",
               "href": "about.html",
-              "visible": false
+              "visible": true
             },
             {
               "text": "使い方",
               "href": "#use",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "index.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "使い方"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "_demo_index_html_390_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         },
         "768": {
           "vw": 768,
@@ -135,25 +145,30 @@
               "visible": false
             },
             {
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
+            },
+            {
               "text": "開発者",
               "href": "about.html",
-              "visible": false
+              "visible": true
             },
             {
               "text": "使い方",
               "href": "#use",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "index.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "使い方"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "_demo_index_html_768_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         },
         "1280": {
           "vw": 1280,
@@ -181,6 +196,11 @@
               "visible": true
             },
             {
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
+            },
+            {
               "text": "開発者",
               "href": "about.html",
               "visible": true
@@ -189,90 +209,72 @@
               "text": "使い方",
               "href": "#use",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "index.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "課題",
-              "仕組み",
-              "図",
-              "QA",
-              "確認していないこと",
-              "開発者",
-              "使い方"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "_demo_index_html_1280_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         }
       },
       "findings": [
         {
           "severity": "LOW",
-          "message": "_demo_index.html @360px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @360px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @360px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @360px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @360px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @360px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @360px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "HIGH",
-          "message": "_demo_index.html @360px: 別ページ導線『開発者』(about.html) が消えている ← 到達不能の恐れ"
+          "message": "index.html @360px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @390px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @390px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @390px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @390px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @390px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @390px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @390px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "HIGH",
-          "message": "_demo_index.html @390px: 別ページ導線『開発者』(about.html) が消えている ← 到達不能の恐れ"
+          "message": "index.html @390px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @768px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @768px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @768px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @768px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @768px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
+          "message": "index.html @768px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
         },
         {
           "severity": "LOW",
-          "message": "_demo_index.html @768px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "HIGH",
-          "message": "_demo_index.html @768px: 別ページ導線『開発者』(about.html) が消えている ← 到達不能の恐れ"
+          "message": "index.html @768px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
         }
       ]
     },
     {
-      "url": "http://127.0.0.1:8899/about.html",
+      "url": "https://namakoo-dev.github.io/about.html",
       "label": "about.html",
       "widths": {
         "360": {
@@ -281,45 +283,30 @@
           "overflow": 0,
           "links": [
             {
-              "text": "basrunPLAIN BASIC RUNNER",
+              "text": "basrun",
               "href": "index.html",
               "visible": true
             },
             {
-              "text": "課題",
-              "href": "index.html#problem",
-              "visible": false
-            },
-            {
-              "text": "仕組み",
-              "href": "index.html#how",
-              "visible": false
-            },
-            {
-              "text": "視覚 QA",
-              "href": "index.html#qa",
-              "visible": false
-            },
-            {
-              "text": "使い方",
-              "href": "index.html#use",
-              "visible": false
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
             },
             {
               "text": "開発者",
               "href": "about.html",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "about.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "開発者"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "about_html_360_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         },
         "390": {
           "vw": 390,
@@ -327,45 +314,30 @@
           "overflow": 0,
           "links": [
             {
-              "text": "basrunPLAIN BASIC RUNNER",
+              "text": "basrun",
               "href": "index.html",
               "visible": true
             },
             {
-              "text": "課題",
-              "href": "index.html#problem",
-              "visible": false
-            },
-            {
-              "text": "仕組み",
-              "href": "index.html#how",
-              "visible": false
-            },
-            {
-              "text": "視覚 QA",
-              "href": "index.html#qa",
-              "visible": false
-            },
-            {
-              "text": "使い方",
-              "href": "index.html#use",
-              "visible": false
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
             },
             {
               "text": "開発者",
               "href": "about.html",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "about.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "开发者"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "about_html_390_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         },
         "768": {
           "vw": 768,
@@ -373,45 +345,30 @@
           "overflow": 0,
           "links": [
             {
-              "text": "basrunPLAIN BASIC RUNNER",
+              "text": "basrun",
               "href": "index.html",
               "visible": true
             },
             {
-              "text": "課題",
-              "href": "index.html#problem",
-              "visible": false
-            },
-            {
-              "text": "仕組み",
-              "href": "index.html#how",
-              "visible": false
-            },
-            {
-              "text": "視覚 QA",
-              "href": "index.html#qa",
-              "visible": false
-            },
-            {
-              "text": "使い方",
-              "href": "index.html#use",
-              "visible": false
+              "text": "ailine",
+              "href": "ailine.html",
+              "visible": true
             },
             {
               "text": "開発者",
               "href": "about.html",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "about.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basrun",
-              "PLAIN BASIC RUNNER",
-              "開発者"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "about_html_768_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         },
         "1280": {
           "vw": 1280,
@@ -419,211 +376,83 @@
           "overflow": 0,
           "links": [
             {
-              "text": "basrunPLAIN BASIC RUNNER",
+              "text": "basrun",
               "href": "index.html",
               "visible": true
             },
             {
-              "text": "課題",
-              "href": "index.html#problem",
-              "visible": true
-            },
-            {
-              "text": "仕組み",
-              "href": "index.html#how",
-              "visible": true
-            },
-            {
-              "text": "視覚 QA",
-              "href": "index.html#qa",
-              "visible": true
-            },
-            {
-              "text": "使い方",
-              "href": "index.html#use",
+              "text": "ailine",
+              "href": "ailine.html",
               "visible": true
             },
             {
               "text": "開発者",
               "href": "about.html",
               "visible": true
+            },
+            {
+              "text": "English",
+              "href": "about.en.html",
+              "visible": true
             }
           ],
-          "vlm": {
-            "items": [
-              "basun",
-              "PLAIN BASIC RUNNER",
-              "課題",
-              "仕組み",
-              "Q&A",
-              "使い方",
-              "開発者"
-            ],
-            "issues": "none"
-          },
-          "nav_screenshot": "about_html_1280_nav.png"
+          "hamburger": false,
+          "hamburgerNamed": false,
+          "vlm": null,
+          "nav_screenshot": null
         }
       },
-      "findings": [
-        {
-          "severity": "LOW",
-          "message": "about.html @360px: リンク『課題』(index.html#problem) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @360px: リンク『仕組み』(index.html#how) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @360px: リンク『視覚 QA』(index.html#qa) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @360px: リンク『使い方』(index.html#use) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @390px: リンク『課題』(index.html#problem) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @390px: リンク『仕組み』(index.html#how) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @390px: リンク『視覚 QA』(index.html#qa) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @390px: リンク『使い方』(index.html#use) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @768px: リンク『課題』(index.html#problem) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @768px: リンク『仕組み』(index.html#how) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @768px: リンク『視覚 QA』(index.html#qa) が消えている（#跳び=意図的の可能性）"
-        },
-        {
-          "severity": "LOW",
-          "message": "about.html @768px: リンク『使い方』(index.html#use) が消えている（#跳び=意図的の可能性）"
-        }
-      ]
+      "findings": []
     }
   ],
   "findings": [
     {
-      "severity": "HIGH",
-      "message": "_demo_index.html @360px: 別ページ導線『開発者』(about.html) が消えている ← 到達不能の恐れ"
-    },
-    {
-      "severity": "HIGH",
-      "message": "_demo_index.html @390px: 別ページ導線『開発者』(about.html) が消えている ← 到達不能の恐れ"
-    },
-    {
-      "severity": "HIGH",
-      "message": "_demo_index.html @768px: 別ページ導線『開発者』(about.html) が消えている ← 到達不能の恐れ"
+      "severity": "LOW",
+      "message": "index.html @360px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @360px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @360px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @360px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @360px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @360px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @360px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @360px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @390px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @390px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @390px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @390px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @390px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @390px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @390px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @390px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @768px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @768px: リンク『課題』(#problem) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @768px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @768px: リンク『仕組み』(#how) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @768px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
     },
     {
       "severity": "LOW",
-      "message": "_demo_index.html @768px: リンク『視覚 QA』(#qa) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "_demo_index.html @768px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @360px: リンク『課題』(index.html#problem) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @360px: リンク『仕組み』(index.html#how) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @360px: リンク『視覚 QA』(index.html#qa) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @360px: リンク『使い方』(index.html#use) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @390px: リンク『課題』(index.html#problem) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @390px: リンク『仕組み』(index.html#how) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @390px: リンク『視覚 QA』(index.html#qa) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @390px: リンク『使い方』(index.html#use) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @768px: リンク『課題』(index.html#problem) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @768px: リンク『仕組み』(index.html#how) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @768px: リンク『視覚 QA』(index.html#qa) が消えている（#跳び=意図的の可能性）"
-    },
-    {
-      "severity": "LOW",
-      "message": "about.html @768px: リンク『使い方』(index.html#use) が消えている（#跳び=意図的の可能性）"
+      "message": "index.html @768px: リンク『確認していないこと』(#limits) が消えている（#跳び=意図的の可能性）"
     }
   ]
 }

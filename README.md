@@ -70,7 +70,9 @@ files alongside them, so thumbnails fall back to a placeholder box.
 ```
 
 See `src/types.ts` for the full TypeScript interfaces, and
-`public/sample/qa-report.json` for a real example.
+`public/sample/qa-report.json` for a real example — a `qa.py` run against
+[namakoo-dev.github.io](https://namakoo-dev.github.io/) (`index.html` and
+`about.html`, no `--vlm`, so screenshots/VLM fields are `null`).
 
 ## Deployment note
 
