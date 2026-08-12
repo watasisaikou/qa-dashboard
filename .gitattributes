@@ -1,3 +1,3 @@
-# server/qa.py is a vendored copy of the qa.py CLI from watasisaikou/tools —
+# server/qa.py is a vendored copy of the qa.py CLI from namakoo-dev/tools —
 # it is not part of this dashboard's own codebase (which is TypeScript).
 server/qa.py linguist-vendored
