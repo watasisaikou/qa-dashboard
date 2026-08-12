@@ -22,11 +22,6 @@ lede.textContent =
   "複数の画面幅でナビゲーションリンクの可視性・横はみ出し・スクリーンショットを一覧します。";
 header.appendChild(lede);
 
-const note = document.createElement("p");
-note.className = "note";
-note.textContent = "AI が書いたツール qa.py の出力を表示します。";
-header.appendChild(note);
-
 const dropHint = document.createElement("p");
 dropHint.className = "drop-hint";
 dropHint.innerHTML =

@@ -3,7 +3,9 @@
 A small single-page dashboard that visualizes the JSON report produced by
 `qa.py --json`, a layout-QA CLI that checks a site across several viewport
 widths (nav-link visibility, horizontal overflow, and optional VLM screenshot
-review).
+review). The bundled `qa.py` (under `server/`) is a vendored copy of an
+AI-written CLI from [namakoo-dev/tools](https://github.com/namakoo-dev/tools);
+the dashboard itself is the TypeScript codebase in `src/`.
 
 Built with **Vite + vanilla TypeScript** (strict mode) — no UI framework, no
 runtime dependencies beyond what Vite needs.
